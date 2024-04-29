@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        form button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tarefas</h1>
+    <form action="{% url 'criar' %}">
+        {% csrf_token %}
+        <button type="submit">Criar Tarefa</button>
+    </form>
+    <ul> 
+        {% for tarefa in tarefas %}
+            <li>{{ tarefa.titulo }}
+                <form action="{% url 'atualizarTarefa' pk=tarefa.pk %}">
+                    {% csrf_token %}
+                    <button type="submit">Atualizar</button>
+                </form>
+                <form action="{% url 'deletarTarefa' pk=tarefa.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Deletar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

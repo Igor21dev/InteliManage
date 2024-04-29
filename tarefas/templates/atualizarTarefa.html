@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Tarefa</title>
+</head>
+<body>
+   <h1>Atualizar Tarefa</h1>
+   <form method="post">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <input type="submit" value="Atualizar">
+   </form> 
+   <form action="{% url 'listaTarefas' %}">
+        {% csrf_token %}
+        <button type="submit">Voltar</button>
+   </form>
+</body>
+</html>
